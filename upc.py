@@ -14,10 +14,8 @@ def upc(f):
 
     """
     response = requests.get('https://upcdatabase.com/random_item.asp')
-    m = re.search('\/([0-9]+)\?', response.url)
-    url = m.group(0)
-    m = re.search('([0-9]+)', url)
-    upc = m.group(0)
+    m = re.search('(\/)([0-9]+)(\?)', response.url)
+    upc = m.group(2)
     f(upc)
 
 def main(count):
