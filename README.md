@@ -1,4 +1,8 @@
 # Python modules for fun and proffit
 
-## usage
+## Usage
+
+### upc
+```shell
 $ python3 upc.py 6
+```
