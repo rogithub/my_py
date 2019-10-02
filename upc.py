@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Retrieves UPC numbers from internet"""
-import os
+import requests
+import re
 import sys
 from multiprocessing import Pool
 from itertools import repeat
@@ -12,7 +13,11 @@ def upc(f):
         f: callback function receiving UPC in string form.
 
     """
-    upc = os.popen('upc').read().rstrip('\n')
+    response = requests.get('https://upcdatabase.com/random_item.asp')
+    m = re.search('\/([0-9]+)\?', response.url)
+    url = m.group(0)
+    m = re.search('([0-9]+)', url)
+    upc = m.group(0)
     f(upc)
 
 def main(count):
