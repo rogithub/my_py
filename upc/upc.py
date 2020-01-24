@@ -13,10 +13,15 @@ def upc(f):
         f: callback function receiving UPC in string form.
 
     """
-    response = requests.get('https://upcdatabase.com/random_item.asp')
-    m = re.search('(\/)([0-9]+)(\?)', response.url)
-    upc = m.group(2)
-    f(upc)
+
+    # response = requests.get('https://upcdatabase.com/random_item.asp')
+    # m = re.search('(\/)([0-9]+)(\?)', response.url)
+    # upc = m.group(2)
+    # f(upc)
+
+    # example response response.url = https://upcdatabase.org/code/5051562013101
+    response = requests.get('https://upcdatabase.org/random')
+    f(response.url[29:len(response.url)])
 
 def main(count):
     """Prints a listing of UPCs.
