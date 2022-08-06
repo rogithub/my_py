@@ -1,0 +1,7 @@
+
+
+
+python3 resizeImg.py /home/ro/Documents/code/papeleria/static/images/backup-images .25
+python3 to_webp.py /home/ro/Documents/code/papeleria/static/images/backup-images
+
+
