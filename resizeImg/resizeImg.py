@@ -16,7 +16,7 @@ def resize(path, ratio):
             with Image.open(path+item) as im:
                 size = get_ratio(im.size, ratio)
                 f, e = os.path.splitext(path+item)
-                imResize = im.resize(size, Image.ANTIALIAS)
+                imResize = im.resize(size, Image.LANCZOS) # Image.ANTIALIAS
                 imResize.save(f + '_resized.jpg', 'JPEG', quality=90)
 
 if __name__ == "__main__":
