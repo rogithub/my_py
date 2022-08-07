@@ -29,7 +29,7 @@ procesar_imagenes () {
 
     python3 $RESIZE_CMD_PATH $IMAGES_PATH $2
     python3 $TO_WEBP_CMD_PATH $IMAGES_PATH
-    remove_file_if_exists $IMAGES_PATH/*.jpg
+    rm $IMAGES_PATH/*.jpg
 
     for filename in $IMAGES_PATH/*_resized.webp; do 
 	[ -f "$filename" ] || continue
