@@ -33,10 +33,10 @@ procesar_imagenes () {
 showHelp()
 {
   echo "Cambia el tamaño de jpg y los convierte a .webp" >&2
-  echo "Uso: ./resizeFiles.sh [Dir-Path] [float-size]" >&2
+  echo "Uso: ./convert_resize_jpg_to_webp.sh [Dir-Path] [float-size]" >&2
   echo ""
   echo "Ejemplo reducir a la mitad"
-  echo "$ ./resizeFiles.sh ~/imagenes 0.5" >&2
+  echo "$ ./convert_resize_jpg_to_webp.sh ~/imagenes 0.5" >&2
 }
 
 if [ $# -ne 2 ] ; then
