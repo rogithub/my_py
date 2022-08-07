@@ -4,6 +4,13 @@ RESIZE_CMD_PATH="./resizeImg.py"
 TO_WEBP_CMD_PATH="./to_webp.py"
 IMAGES_PATH="./"
 
+remove_file_if_exists () {    
+    if [ -f "$1" ]; then
+	rm $1
+    fi
+}
+
+
 procesar_imagenes () {
     # si param 1 no es directorio, salir
     if [ ! -d "$1" ]; then	
@@ -22,7 +29,7 @@ procesar_imagenes () {
 
     python3 $RESIZE_CMD_PATH $IMAGES_PATH $2
     python3 $TO_WEBP_CMD_PATH $IMAGES_PATH
-    rm $IMAGES_PATH/*.jpg
+    remove_file_if_exists $IMAGES_PATH/*.jpg
 
     for filename in $IMAGES_PATH/*_resized.webp; do 
 	[ -f "$filename" ] || continue
