@@ -25,7 +25,12 @@ procesar_imagenes () {
     fi
 
     IMAGES_PATH=$(dirname "$1")"/"$(basename "$1")
-    
+
+    # rename *.jpeg to .jpg
+    for filename in $IMAGES_PATH/*.jpeg; do 
+        [ -f "$filename" ] || continue
+        mv "$filename" "${filename/.jpeg/.jpg}"
+    done
 
     python3 $RESIZE_CMD_PATH $IMAGES_PATH $2
     python3 $TO_WEBP_CMD_PATH $IMAGES_PATH
