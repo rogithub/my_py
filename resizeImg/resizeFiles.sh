@@ -18,16 +18,16 @@ procesar_imagenes () {
     fi
 
     IMAGES_PATH=$(dirname "$1")"/"$(basename "$1")
-    echo $IMAGES_PATH
+    
 
-    #python3 $RESIZE_CMD_PATH $IMAGES_PATH $2
-    #python3 $TO_WEBP_CMD_PATH $IMAGES_PATH
-    #rm $IMAGES_PATH/*.jpg
+    python3 $RESIZE_CMD_PATH $IMAGES_PATH $2
+    python3 $TO_WEBP_CMD_PATH $IMAGES_PATH
+    rm $IMAGES_PATH/*.jpg
 
-    #for filename in $IMAGES_PATH/*_resized.webp; do 
-#	[ -f "$filename" ] || continue
-#	mv "$filename" "${filename/_resized.webp/.webp}"
-#    done
+    for filename in $IMAGES_PATH/*_resized.webp; do 
+	[ -f "$filename" ] || continue
+	mv "$filename" "${filename/_resized.webp/.webp}"
+    done
 }
 
 showHelp()
