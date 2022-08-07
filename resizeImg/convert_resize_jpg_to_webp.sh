@@ -4,13 +4,6 @@ RESIZE_CMD_PATH="./resizeImg.py"
 TO_WEBP_CMD_PATH="./to_webp.py"
 IMAGES_PATH="./"
 
-remove_file_if_exists () {    
-    if [ -f "$1" ]; then
-	rm $1
-    fi
-}
-
-
 procesar_imagenes () {
     # si param 1 no es directorio, salir
     if [ ! -d "$1" ]; then	
