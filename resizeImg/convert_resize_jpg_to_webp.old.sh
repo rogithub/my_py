@@ -11,6 +11,12 @@ procesar_imagenes () {
 	exit 1
     fi
 
+    # si param 2 no es numero salir
+    if ! [[ $2 =~ ^[0-9]?([.][0-9]+)?$ ]]; then
+	echo 'Not a number:' $2 >&2
+	exit 1 
+    fi
+
     IMAGES_PATH=$(dirname "$1")"/"$(basename "$1")
 
     # rename *.jpeg to .jpg
@@ -19,7 +25,7 @@ procesar_imagenes () {
         mv "$filename" "${filename/.jpeg/.jpg}"
     done
 
-    python3 $RESIZE_CMD_PATH $IMAGES_PATH
+    python3 $RESIZE_CMD_PATH $IMAGES_PATH $2
     python3 $TO_WEBP_CMD_PATH $IMAGES_PATH
     rm $IMAGES_PATH/*.jpg
 
@@ -32,15 +38,15 @@ procesar_imagenes () {
 showHelp()
 {
   echo "Cambia el tamaño de jpg y los convierte a .webp" >&2
-  echo "Uso: ./convert_resize_jpg_to_webp.sh [Dir-Path]" >&2
+  echo "Uso: ./convert_resize_jpg_to_webp.sh [Dir-Path] [float-size]" >&2
   echo ""
-  echo "Ejemplo"
-  echo "$ ./convert_resize_jpg_to_webp.sh ~/imagenes" >&2
+  echo "Ejemplo reducir a la mitad"
+  echo "$ ./convert_resize_jpg_to_webp.sh ~/imagenes 0.5" >&2
 }
 
-if [ $# -ne 1 ] ; then
+if [ $# -ne 2 ] ; then
   showHelp
   exit 1
 fi
 
-procesar_imagenes $1
+procesar_imagenes $1 $2
